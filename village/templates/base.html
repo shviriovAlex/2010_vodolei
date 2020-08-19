@@ -1,0 +1,259 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Vodolei</title>
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <link href="{% static '/village.css' %}" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript" src='{% static "script.js" %}'></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #6b7478;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+      <a class="navbar-brand text-light" href="{% url 'village:for_community' %}">
+
+      Водолей 2010
+  </a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+    <div class="main-navbar" style="display: flex; align-items:flex-end;">
+<div class="registrations" style="display: flex; justify-content: flex-end;">
+    {% if request.user.is_authenticated %}
+<a href="{% url 'village:for_community' %}"><input class="btn btn-secondary" value="Главная" type="submit" aria-haspopup="true" aria-expanded="false"></a>
+
+        <div class="dropdown show-info">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+      Основная документация
+  </a>
+
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="{% url 'village:rule' %}">Устав</a>
+    <a class="dropdown-item" href="{% url 'village:rule_inside' %}">Правила внутри распорядка</a>
+    <a class="dropdown-item" href="{% url 'village:codex_about_land' %}">Кодекс о земле</a>
+  </div>
+</div>
+
+        <div class="dropdown show-info">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Юридическая информация
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Указ Президента РБ</a>
+    <a class="dropdown-item" href="#">Кодекс РБ о земле</a>
+    <a class="dropdown-item" href="#">Пожарная безопасность</a>
+      <a class="dropdown-item" href="#">Время приема</a>
+    <a class="dropdown-item" href="#">Противопожарное состояние территории и домовладений садоводческих товариществ</a>
+    <a class="dropdown-item" href="#">ТИПОВЫЕ ПРАВИЛА внутреннего распорядка садоводческих товариществ</a>
+      <a class="dropdown-item" href="#">Требования к постройкам и зеленым насаждениям на садовом (дачном) участке</a>
+
+  </div>
+</div>
+          <div class="dropdown show-info">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Протоколы собрания
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Протоколы общего собрания</a>
+  </div>
+  </div>
+
+  </div>
+        <div class="dropdown show-info">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Пожарная безопасность
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="#">Пожарная безопасность</a>
+    <a class="dropdown-item" href="#">Инструкция №1</a>
+
+  </div>
+  </div>
+   <div class="btn-group dropleft">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Login
+  </button>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="{% url 'village:logout' %}" style="color:black;">
+        Выйти
+     </a>
+          <a class="dropdown-item" href="{% url 'village:password_change' %}" style="color:black;">
+        Изменить пароль
+    </a>
+         </a>
+          <a class="dropdown-item" href="{% url 'village:password_reset' %}" style="color:black;">
+        Сбросить пароль
+    </a>
+    </div>
+
+
+</div>
+    </div>
+    </div>
+
+{% endif %}
+
+</nav>
+
+<div class="container">
+<div class="row">
+
+   <div class="col-sm-4 bd-sidebar" style="background-color: white">
+<form class="bd-search d-flex align-items-center">
+    <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="true" aria-label="Toggle docs avigation">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="300" height="50" style="color: black" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg>
+  </button>
+</form>
+<nav class="bd-links collapse show" style="overflow: auto; height: 40rem; position: sticky; top: 3em; " id="bd-docs-nav">
+{% if request.user.is_authenticated %}
+    <li class="list-group-item" >
+<div class="pulse">
+
+    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+       Должники
+    </a>
+
+         <div class="dropdown-menu dropright">
+
+             <a href="{% url 'village:targeted_contributions' %}" class="dropdown-item text-secondary">Целевые взносы</a>
+             <a href="{% url 'village:membership_fee' %}" class="dropdown-item text-secondary">Членские взносы</a>
+             <a href="{% url 'village:electricity' %}" class="dropdown-item text-secondary">Электроэнергия</a>
+         </div>
+    </div>
+    </li>
+
+    <li class="list-group-item" >
+    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Платежи
+    </a>
+         <div class="dropdown-menu">
+
+             <a href="" class="dropdown-item text-secondary">Целевые</a>
+             <a href="" class="dropdown-item text-secondary">Членские</a>
+             <a href="" class="dropdown-item text-secondary">Электроэнергия</a>
+             <a href="" class="dropdown-item text-secondary">Как оплатить</a>
+         </div>
+    </li>
+        <li class="list-group-item" >
+    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Оформление и регистрация
+    </a>
+         <div class="dropdown-menu">
+
+             <a href="static/reg/Заявление  о принятии в члены  СТ Водолей-2010.doc" class="dropdown-item text-secondary text-danger" download="">Вступление в члены СТ</a>
+             <a href="static/reg/Действия члена СТ для регистрации садового домика.docx" class="dropdown-item text-secondary">Регистрация садового домика и построек</a>
+             <a href="static/reg/Заявление в правление (оформление в собств.).docx" class="dropdown-item text-secondary">Оформение участка в собственность</a>
+         </div>
+    </li>
+            <li class="list-group-item" >
+    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Как подключить
+    </a>
+         <div class="dropdown-menu">
+
+             <a href="" class="dropdown-item text-secondary">Водоснабжение</a>
+             <a href="" class="dropdown-item text-secondary">Газ</a>
+             <a href="" class="dropdown-item text-secondary">Электричество</a>
+         </div>
+    </li>
+                <li class="list-group-item" >
+    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Схемы
+    </a>
+         <div class="dropdown-menu">
+
+             <a href="" class="dropdown-item text-secondary">Водоснабжение</a>
+             <a href="" class="dropdown-item text-secondary">Газ</a>
+             <a href="" class="dropdown-item text-secondary">Электричество</a>
+         </div>
+    </li>
+
+
+
+    <li class="list-group-item">
+        <a class="nav-link text-secondary bg-light" style="background: #fff1dd" href="{% url 'village:leadership' %}">Администрация СТ</a>
+    </li>
+    <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="#">План Садоводческого Товарищества</a>
+      </li>
+        <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="{% url 'village:maps' %}">Расположение товарищества</a>
+      </li>
+                <li class="list-group-item" >
+    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        Органы управления
+    </a>
+         <div class="dropdown-menu">
+
+             <a href="" class="dropdown-item text-secondary">Правление</a>
+             <a href="" class="dropdown-item text-secondary">Уполномоченные</a>
+             <a href="" class="dropdown-item text-secondary">Ревизионная комиссия</a>
+             <a href="" class="dropdown-item text-secondary">Счетная комиссия</a>
+         </div>
+    </li>
+        <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="#">Доска позора</a>
+      </li>
+            <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="{% url 'village:photo' %}">Фотоальбом</a>
+      </li>
+            <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="#">Полезная информация</a>
+      </li>
+    <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="#">Тарифы на электро энергию</a>
+      </li>
+
+    <li class="list-group-item">
+      <a class="nav-link text-secondary bg-light" href="#">Электроэнергия Данные</a>
+          </li>
+ {% else %}
+     <li class="list-group-item">
+        <a class="nav-link text-secondary bg-light" style="background: #fff1dd" href="{% url 'village:leadership' %}">Администрация СТ</a>
+    </li>
+
+    <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="{% url 'village:maps' %}">Расположение товарищества</a>
+      </li>
+     <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="{% url 'village:photo' %}">Фотоальбом</a>
+      </li>
+      <li class="list-group-item">
+    <a class="nav-link text-secondary bg-light" href="">История</a>
+      </li>
+    {% endif %}
+</div>
+
+</nav>
+
+
+
+<div class="col-sm-8">
+
+{% block content %}
+{% endblock %}
+
+
+
+    </div>
+</div>
+</body>
+</html>

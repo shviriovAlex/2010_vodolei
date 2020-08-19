@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{materials.title}}{% endblock %}
+
+{% block content %}
+<h1>{{materials.title}}</h1>
+<p>{{materials.body}}
+<br>
+ 	<img src="{{materials.image.url}}" alt="Парк в Японии" class="minimized" id="myImg" width="300" height="200">
+	<div id="myModal" class="modal">
+		<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+		<img class="modal-content" id="img01">
+		<div id="caption"></div>
+	</div>
+
+	<script src="../../static/script.js"></script>
+{% endblock %}

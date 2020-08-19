@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+    <th>Номер участка</th>
+    <th>Сумма долга</th>
+    <th>Счетчик</th>
+    </thead>
+
+    <tbody>
+        {% for t in targets %}
+        <tr>
+            <td>{{ t.Номер_участка }}</td>
+            <td>{{ t.Сумма_долга }}</td>
+            <td>{{ t.Счетчик }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

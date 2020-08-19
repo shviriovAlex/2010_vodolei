@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Расположение товарищества</h1>
+<br>
+    <div id='map' style='width: 800px; height: 400px;'></div>
+    <script>
+    mapboxgl.accessToken = '{{mapbox_access_token}}';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [27.5907, 54.0762],
+    zoom: 14
+    });
+    </script>
+<hr class="my-4" style="background-color: #17a2b8;">
+<img src="/static/image/skrin_map.png" width="800 px" height="450 px"  class="d-inline-block align-top" alt="">
+
+{% endblock %}
