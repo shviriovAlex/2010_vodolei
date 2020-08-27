@@ -3,22 +3,6 @@ from django.urls import reverse
 from django.utils import timezone
 
 
-class Base(models.Model):
-    title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250,
-                            default='')
-    body = models.TextField()
-    image = models.ImageField("Изображение",
-                              upload_to="media_community/")
-    publish = models.DateTimeField(default=timezone.now)
-
-    def get_absolute_url(self):
-        return reverse('village:about_base',
-                       args=[self.publish.year,
-                             self.publish.day,
-                             self.slug])
-
-
 class ForCommunity(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
@@ -39,15 +23,30 @@ class ForCommunity(models.Model):
         return self.title
 
 
-class MainPage(models.Model):
+class ДоскаПозора(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
                             default='')
-    image = models.ImageField("Изображение",
-                              upload_to="media_main_page/",
-                              blank='True',
-                              null='True', )
-    text = models.TextField()
+    body = models.TextField()
+    publish = models.DateTimeField(default=timezone.now)
+    photo1 = models.ImageField("Изображение1",
+                               upload_to="media_shame",
+                               null="True",
+                               blank="True")
+    photo2 = models.ImageField("Изображение2",
+                               upload_to="media_shame",
+                               null="True",
+                               blank="True")
+    photo3 = models.ImageField("Изображение3",
+                               upload_to="media_shame",
+                               null="True",
+                               blank="True")
+
+    def get_absolute_url(self):
+        return reverse('village:about_shame',
+                       args=[self.publish.year,
+                             self.publish.month,
+                             self.slug])
 
     def __str__(self):
         return self.title
@@ -60,6 +59,20 @@ class Rule(models.Model):
     document = models.FileField(name='document',
                                 default='',
                                 upload_to='documentation/',
+                                null='True',
+                                blank='True')
+
+    def __str__(self):
+        return self.title
+
+
+class Протоколы_Собраний(models.Model):
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250,
+                            default='')
+    document = models.FileField(name='document',
+                                default='',
+                                upload_to='media',
                                 null='True',
                                 blank='True')
 
@@ -95,21 +108,23 @@ class Leadership(models.Model):
 
 
 class Debtors(models.Model):
-    Номер_участка = models.CharField(max_length=100, blank=False)
-    Сумма_долга = models.CharField(max_length=100, blank=False)
+    Адрес = models.CharField(max_length=100, blank=False)
+    ФИО = models.CharField(max_length=100, blank=False)
 
     choices = (
         ('AVAILABLE', 'Item is ready to be purchased'),
         ('SOLD', 'Item Sold'),
         ('RESTOCKING', 'Item restocking in few days')
     )
-    Счетчик = models.CharField(max_length=100, default='No issues')
+    Задолженность = models.CharField(max_length=100, default='No issues')
+
+    publish = models.DateTimeField(default=timezone.now)
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        return 'Type : {0} Price : {1}'.format(self.Номер_участка, self.Сумма_долга)
+        return 'Type : {0} Price : {1}'.format(self.Адрес, self.ФИО)
 
 
 class Целевые(Debtors):

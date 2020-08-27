@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4>{{shame.title}}</h4>
+{{shame.body}}
+
+<div class="shame">
+
+
+ 	<img src="{{shame.photo1.url}}" alt="клик для увеличения" class="minimized">
+
+{% if shame.photo2 %}
+ 	<img src="{{shame.photo2.url}}" alt="клик для увеличения" class="minimized">
+
+{% endif %}
+{% if shame.photo3 %}
+ 	<img src="{{shame.photo3.url}}" alt="клик для увеличения" class="minimized">
+{% endif %}
+</div>
+
+      <p class="text-secondary">Опубликованно {{shame.publish}}</p>
+
+
+
+{% endblock %}

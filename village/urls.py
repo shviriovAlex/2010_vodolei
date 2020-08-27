@@ -5,12 +5,14 @@ from django.contrib.auth import views as au_views
 app_name = 'village'
 urlpatterns = [
     path('login/', au_views.LoginView.as_view(), name='login'),
-    path('<int:year>/<int:day>/<slug:slug>/', views.about_base, name='about_base'),
     path('', views.for_community, name='for_community'),
     path('<int:year>/<int:month>/<int:day>/<slug:slug>/',
          views.about_news,
          name='about_news'),
-
+    path('shames', views.shames, name='shames'),
+    path('<int:year>/<int:month>/<slug:slug>/',
+         views.about_shame,
+         name="about_shame"),
     path('registration', views.registration, name='registration'),
     path('logout/', au_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('good_job/', views.good_job, name='good_job'),
@@ -27,12 +29,18 @@ urlpatterns = [
     path('rule/', views.rule, name='rule'),
     path('leadership/', views.leadership, name='leadership'),
     path('maps/', views.maps, name='maps'),
-    path('debtors/', views.debtors, name='debtors'),
     path('codex_about_land/', views.codex_about_land, name='codex_about_land'),
     path('rule_inside/', views.rule_inside, name='rule_inside'),
     path('targeted_contributions', views.targeted_contributions, name='targeted_contributions'),
     path('membership_fee', views.membership_fee, name='membership_fee'),
     path('electricity', views.electricity, name='electricity'),
     path('photo', views.photo, name='photo'),
+    path('protocols', views.protocols, name='protocols'),
+    path('application_to_the_board', views.application_to_the_board, name='application_to_the_board'),
+    path('entry_in_community', views.entry_in_community, name='entry_in_community'),
+    path('reg_house', views.reg_house, name='reg_house'),
+    path('reg_ownership', views.reg_ownership, name='reg_ownership'),
+    path('statement_to_the_rec', views.statement_to_the_rec, name='statement_to_the_rec'),
+
 
 ]

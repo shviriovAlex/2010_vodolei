@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="shames">
+  {% for shame in shames %}
+
+<div class="card">
+
+  <div class="card-body">
+
+      <p class="text-secondary">Опубликованно {{shame.publish}}</p>
+    <p class="card-title">{{shame.title}}</p>
+    <h5 class="card-text">{{shame.body}}</h5>
+
+<hr class="my-2 alert-secondary" >
+
+
+
+  <a href="{{shame.get_absolute_url}}" class="btn btn-light">Читать полность</a>
+    </div>
+   <img class="card-img-top" src="{{shame.photo1.url}}" alt="Card image cap" style="padding: 10px">
+</div>
+
+{% endfor %}
+</div>
+{% endblock %}

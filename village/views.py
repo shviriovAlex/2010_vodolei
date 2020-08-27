@@ -7,25 +7,6 @@ from . import models
 from . import forms
 
 
-def base(request):
-    bases = models.Base.objects.all()
-
-    return render(request,
-                  'base.html',
-                  {'bases': bases, })
-
-
-def about_base(request, year, day, slug):
-    bases = get_object_or_404(models.Base,
-                              slug=slug,
-                              publish__year=year,
-                              publish__day=day,
-                              )
-    return render(request,
-                  'about_base.html',
-                  {'bases': bases})
-
-
 def maps(request):
     mapbox_access_token = 'pk.eyJ1IjoiYmxhY2ttYW1iYTAwN3FlIiwiYSI6ImNrYzR2YTFlcjBicDgyeW51OW9wODQ0OGYifQ.IHGnBzx7Z9d-eayrzSGxtA'
     return render(request,
@@ -43,7 +24,7 @@ def targeted_contributions(request):
 
     return render(request,
                   'important/targeted_contributions.html',
-                  {'target': target}, )
+                  {'targets': target}, )
 
 
 def membership_fee(request):
@@ -60,6 +41,24 @@ def electricity(request):
     return render(request,
                   'important/electricity.html',
                   {'targets': target}, )
+
+
+def shames(request):
+    shames = models.ДоскаПозора.objects.all()
+    return render(request,
+                  'includes/shames.html',
+                  {'shames': shames}, )
+
+
+def about_shame(request, slug, year, month):
+    shame = get_object_or_404(models.ДоскаПозора,
+                              slug=slug,
+                              publish__year=year,
+                              publish__month=month,
+                              )
+    return render(request,
+                  'includes/about_shame.html',
+                  {'shame': shame})
 
 
 def for_community(request):
@@ -158,13 +157,6 @@ def leadership(request):
                   {'leaders': leader}, )
 
 
-def debtors(request):
-    debtors = models.Debtors.objects.all()
-    return render(request,
-                  'important/debtors.html',
-                  {'debtors': debtors})
-
-
 def codex_about_land(request):
     return render(request,
                   'main_documentation/codex_about_land.html')
@@ -189,3 +181,35 @@ def photo(request):
     return render(request,
                   'photo.html',
                   {'images': images}, )
+
+
+def entry_in_community(request):
+    return render(request,
+                  'of_and_reg/entry_in_community.html', )
+
+
+def reg_ownership(request):
+    return render(request,
+                  'of_and_reg/reg_ownership.html', )
+
+
+def application_to_the_board(request):
+    return render(request,
+                  'of_and_reg/application_to_the_board.html', )
+
+
+def reg_house(request):
+    return render(request,
+                  'of_and_reg/reg_house.html', )
+
+
+def statement_to_the_rec(request):
+    return render(request,
+                  'of_and_reg/statement_to_the_rec.html', )
+
+
+def protocols(request):
+    protocols = models.Протоколы_Собраний.objects.all()
+    return render(request,
+                  'protocols.html',
+                  {'protocols': protocols})

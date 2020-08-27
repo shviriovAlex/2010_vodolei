@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<h4 class="text-secondary">Электроэнергия</h4>
 <table class="table table-striped">
     <thead>
-    <th>Номер участка</th>
-    <th>Сумма долга</th>
-    <th>Счетчик</th>
+    <th>Адрес</th>
+    <th>ФИО</th>
+    <th style="text-align:center">Задолженность(кВч)</th>
     </thead>
 
     <tbody>
         {% for t in targets %}
         <tr>
-            <td>{{ t.Номер_участка }}</td>
-            <td>{{ t.Сумма_долга }}</td>
-            <td>{{ t.Счетчик }}</td>
+            <td>{{ t.Адрес }}</td>
+            <td>{{ t.ФИО }}</td>
+            <td style="text-align: center">{{ t.Задолженность }}</td>
         </tr>
         {% endfor %}
     </tbody>

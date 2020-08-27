@@ -8,17 +8,7 @@ class ViewAdmin(ImportExportModelAdmin):
     pass
 
 
-@admin.register(Base)
-class BaseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'publish')
-    list_filter = ('publish',)
-    search_fields = ('title', 'body')  # добавляем поиск
-    prepopulated_fields = {'slug': ('title',)}
-    date_hierarchy = 'publish'
-    ordering = ('publish',)
-
-
-@admin.register(ForCommunity)
+@admin.register(ForCommunity, ДоскаПозора)
 class ForCommunityAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'publish')
     list_filter = ('publish',)
@@ -28,13 +18,6 @@ class ForCommunityAdmin(admin.ModelAdmin):
     ordering = ('publish',)
 
 
-@admin.register(MainPage)
-class MainPageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'image', 'text',)
-    search_fields = ('title', 'body')
-    prepopulated_fields = {'slug': ('title',)}
-
-
 @admin.register(Leadership)
 class LeadershipAdmin(admin.ModelAdmin):
     list_display = ('title', 'photo', 'name',)
@@ -42,10 +25,15 @@ class LeadershipAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
-
-
 @admin.register(Rule)
 class RuleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'document',)
+    search_fields = ('title', 'document')
+    prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(Протоколы_Собраний)
+class ProtocolsAdmin(admin.ModelAdmin):
     list_display = ('title', 'document',)
     search_fields = ('title', 'document')
     prepopulated_fields = {'slug': ('title',)}

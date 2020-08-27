@@ -1,3 +1,4 @@
+
 $(function(){
   $('.minimized').click(function(event) {
     var i_path = $(this).attr('src');
@@ -18,3 +19,4 @@ $(function(){
     });
   });
 });
+

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<h4>Администрация СТ</h4>
 {% for leader in leaders %}
 
 <div class="media">
-  <img class="mr-3" src="{{leader.photo.url}}" width="60 px" height="80 px" alt="Generic placeholder image">
+
   <div class="media-body">
-    <h5 class="mt-0">Должность: {{ leader.position }}</h5>
+    <h5 class="mt-0"> {{ leader.position }}</h5>
     <h5 class="card-text">{{ leader.name }}</h5>
     <h5  class="card-text">{{ leader.phone_number }}</h5>
     </div>

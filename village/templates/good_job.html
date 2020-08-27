@@ -4,6 +4,6 @@
 
 <p>Привет,  {{ request.user.username }}!</p>
 <br>
-<a href="{% url 'village:for_community' %}">НА ГЛАВНУЮ</a>
+<p><a href="{% url 'village:for_community' %}" class="text-info">НА ГЛАВНУЮ</a></p>
 
 {% endblock %}
