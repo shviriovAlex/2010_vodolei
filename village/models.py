@@ -3,13 +3,35 @@ from django.urls import reverse
 from django.utils import timezone
 
 
-class ForCommunity(models.Model):
+class Главная(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
                             default='')
     body = models.TextField()
     image = models.ImageField("Изображение",
-                              upload_to="media_community/")
+                              upload_to="media_community/",
+                              null="True",
+                              blank="True")
+    image2 = models.ImageField("Изображение",
+                               upload_to="media_community/",
+                               null="True",
+                               blank="True")
+    image3 = models.ImageField("Изображение",
+                               upload_to="media_community/",
+                               null="True",
+                               blank="True")
+    image4 = models.ImageField("Изображение",
+                               upload_to="media_community/",
+                               null="True",
+                               blank="True")
+    image5 = models.ImageField("Изображение",
+                               upload_to="media_community/",
+                               null="True",
+                               blank="True")
+    document = models.FileField("Файл",
+                                upload_to="media_community/",
+                                null="True",
+                                blank="True",)
     publish = models.DateTimeField(default=timezone.now)
 
     def get_absolute_url(self):
@@ -52,20 +74,6 @@ class ДоскаПозора(models.Model):
         return self.title
 
 
-class Rule(models.Model):
-    title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250,
-                            default='')
-    document = models.FileField(name='document',
-                                default='',
-                                upload_to='documentation/',
-                                null='True',
-                                blank='True')
-
-    def __str__(self):
-        return self.title
-
-
 class Протоколы_Собраний(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
@@ -80,18 +88,7 @@ class Протоколы_Собраний(models.Model):
         return self.title
 
 
-class RuleInside(models.Model):
-    title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250,
-                            default='')
-    document = models.FileField(name='document',
-                                default='',
-                                upload_to='documentation/',
-                                null='True',
-                                blank='True')
-
-
-class Leadership(models.Model):
+class Администрация(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
                             default='')
@@ -118,7 +115,7 @@ class Debtors(models.Model):
     )
     Задолженность = models.CharField(max_length=100, default='No issues')
 
-    publish = models.DateTimeField(default=timezone.now)
+    опубликовано = models.DateTimeField(default=timezone.now)
 
     class Meta:
         abstract = True

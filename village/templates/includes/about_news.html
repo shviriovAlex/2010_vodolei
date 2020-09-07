@@ -9,8 +9,22 @@
 <br>
 
 
-<div class="image__wrapper">
+<div class="shame">
+	{% if materials.image %}
  	<img src="{{materials.image.url}}" alt="клик для увеличения" class="minimized">
+	{% endif %}
+	{% if materials.image2 %}
+	<img src="{{materials.image2.url}}" alt="клик для увеличения" class="minimized">
+	{% endif %}
+	{% if materials.image3 %}
+	<img src="{{materials.image3.url}}" alt="клик для увеличения" class="minimized">
+	{% endif %}
+	{% if materials.image4 %}
+	<img src="{{materials.image4.url}}" alt="клик для увеличения" class="minimized">
+	{% endif %}
+	{% if materials.image5 %}
+	<img src="{{materials.image5.url}}" alt="клик для увеличения" class="minimized">
+{% endif %}
 </div>
 
 {% endblock %}

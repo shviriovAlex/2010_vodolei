@@ -1,10 +1,103 @@
 body{
 
     background: #f0eeee;
-    padding: 30px 30px;
     margin-top: 50px;
-
+    padding: 10px 100px;
    }
+p, h1, h4, h5, a{
+    font-family: Roboto, serif;
+}
+.card-img-top{
+      padding: 10px;
+  }
+.login{
+    background: #fcfbfc;
+    padding: 50px 400px;
+    width: 100%;
+}
+.minimized{
+    width: 33%;
+  }
+
+.card{
+
+  background: #fcfbfc;
+  margin: 2px;
+}
+@media(max-width: 1224px){
+    .login{
+        padding: 50px 250px;
+    }
+}
+
+@media(min-width: 991px){
+      .bd-links {
+          display: block !important;
+
+  }
+
+}
+
+@media(max-width: 992px){
+
+    body{
+        padding: 10px 120px;
+
+  }
+  .card-img-top{
+      padding: 30px;
+  }
+  .login{
+      padding: 50px 70px;
+  }
+  .bd-navbar{
+      position: absolute; /* Set the navbar to fixed position */
+      top: 0; /* Position the navbar at the top of the page */
+      width: 100%;
+  }
+  .minimized{
+    width: 49%;
+  }
+  .card{
+    width: 100%;
+  }
+}
+
+@media(max-width: 768px){
+
+    body{
+        padding: 10px 40px;
+  }
+    .card-img-top{
+      padding: 20px;
+  }
+    .login{
+      padding: 50px 10px;
+  }
+}
+
+@media(max-width: 480px){
+
+    body{
+        padding: 10px 0;
+    }
+    .login{
+        padding: 50px 0;
+    }
+    p{
+        font-size: 14px;
+    }
+    .card-body{
+        width: 100%;
+    }
+}
+
+
+.jumbotron{
+    background:#f0eeee;
+
+}
+
 h4{
   text-align: center;
   padding: 10px;
@@ -19,6 +112,7 @@ a.text-dark{
   opacity: 1;
   padding: 5px;
 }
+
 .a.text-dark:hover {
   opacity: 0.6;
 }
@@ -32,39 +126,16 @@ h5{
   flex-wrap:wrap;
   padding: 10px;
 }
+
 .shame{
   display: flex;
   flex-wrap:wrap;
   padding: 1px;
 }
 
-@media (min-width: 992px){
-  .minimized{
-    width: 33%;
-  }
-}
-@media (max-width: 992px){
-  .minimized{
-    width: 49%;
-  }
-}
-.card{
 
-  background: #fcfbfc;
-  margin: 2px;
-}
 
-@media (min-width: 992px){
-  .card{
 
-    width: 48%;
-  }
-}
-@media (max-width: 992px){
-  .card{
-    width: 100%;
-  }
-}
 [class=col-lg-4]{
 
   background-color: white;
@@ -89,7 +160,6 @@ h5{
   opacity: 0.6;
 }
 
-
 .pulse {
 
   background-color: red;
@@ -110,10 +180,9 @@ h5{
 	display: flex;
 	flex-direction:column;
 	flex-wrap:wrap
-
 }
-.minimized {
 
+.minimized {
   	cursor: pointer;
   	border: 1px solid #FFF;
 }
@@ -154,7 +223,6 @@ h5{
 #close-popup {
   width: 30px;
   height: 30px;
-
   background: #FFFFFF;
   border: 1px solid #AFAFAF;
   border-radius: 15px;

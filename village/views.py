@@ -62,7 +62,7 @@ def about_shame(request, slug, year, month):
 
 
 def for_community(request):
-    main = models.ForCommunity.objects.all()
+    main = models.Главная.objects.all()
     if request.method == "POST":
         form = forms.LoginForm(request.POST)
         if form.is_valid():
@@ -75,7 +75,10 @@ def for_community(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return good_job(request)
+                    return render(request,
+                                  'for_community.html',
+                                  {'main_page': main,
+                                   'form': form}, )
                 else:
                     HttpResponse('Inactive user')
             else:
@@ -90,7 +93,7 @@ def for_community(request):
 
 
 def about_news(request, year, month, day, slug):
-    materials = get_object_or_404(models.ForCommunity,
+    materials = get_object_or_404(models.Главная,
                                   slug=slug,
                                   publish__year=year,
                                   publish__month=month,
@@ -138,20 +141,8 @@ def user_logout(request):
                   'logout.html')
 
 
-def rule(request):
-    rules = models.Rule.objects.all()
-    return render(request,
-                  'main_documentation/rule.html',
-                  {'rules': rules}, )
-
-
 def leadership(request):
-    leader = models.Leadership.objects.all()
-    query = request.GET.get("query", '')
-    if query:
-        leader = leader.filter(title__icontains=query)
-    else:
-        leader = leader
+    leader = models.Администрация.objects.all()
     return render(request,
                   'important/leadership.html',
                   {'leaders': leader}, )
@@ -163,10 +154,13 @@ def codex_about_land(request):
 
 
 def rule_inside(request):
-    rules = models.RuleInside.objects.all()
     return render(request,
-                  'main_documentation/rule_inside.html',
-                  {'rules': rules}, )
+                  'main_documentation/rule_inside.html')
+
+
+def rule(request):
+    return render(request,
+                  'main_documentation/rule.html')
 
 
 def all_photo(request):

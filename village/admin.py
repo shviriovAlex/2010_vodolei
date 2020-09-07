@@ -8,7 +8,7 @@ class ViewAdmin(ImportExportModelAdmin):
     pass
 
 
-@admin.register(ForCommunity, ДоскаПозора)
+@admin.register(Главная, ДоскаПозора)
 class ForCommunityAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'publish')
     list_filter = ('publish',)
@@ -18,29 +18,15 @@ class ForCommunityAdmin(admin.ModelAdmin):
     ordering = ('publish',)
 
 
-@admin.register(Leadership)
+@admin.register(Администрация)
 class LeadershipAdmin(admin.ModelAdmin):
     list_display = ('title', 'photo', 'name',)
     search_fields = ('title', 'name')
     prepopulated_fields = {'slug': ('title',)}
 
 
-@admin.register(Rule)
-class RuleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'document',)
-    search_fields = ('title', 'document')
-    prepopulated_fields = {'slug': ('title',)}
-
-
 @admin.register(Протоколы_Собраний)
 class ProtocolsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'document',)
-    search_fields = ('title', 'document')
-    prepopulated_fields = {'slug': ('title',)}
-
-
-@admin.register(RuleInside)
-class RuleInsideAdmin(admin.ModelAdmin):
     list_display = ('title', 'document',)
     search_fields = ('title', 'document')
     prepopulated_fields = {'slug': ('title',)}
