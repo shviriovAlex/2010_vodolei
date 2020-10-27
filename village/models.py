@@ -31,7 +31,11 @@ class Главная(models.Model):
     document = models.FileField("Файл",
                                 upload_to="media_community/",
                                 null="True",
-                                blank="True",)
+                                blank="True", )
+    document_2 = models.FileField("Файл",
+                                  upload_to="media_community/",
+                                  null="True",
+                                  blank="True", )
     publish = models.DateTimeField(default=timezone.now)
 
     def get_absolute_url(self):
@@ -74,6 +78,14 @@ class ДоскаПозора(models.Model):
         return self.title
 
 
+class Тарифы_Электр_Газ(models.Model):
+    дата_от = models.CharField(max_length=250)
+    электроэнергия = models.CharField(max_length=250)
+    газ = models.CharField(max_length=250)
+    прежний_электроэнергия = models.CharField(max_length=250)
+    прежний_газ = models.CharField(max_length=250)
+
+
 class Протоколы_Собраний(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
@@ -83,25 +95,45 @@ class Протоколы_Собраний(models.Model):
                                 upload_to='media',
                                 null='True',
                                 blank='True')
+    publish = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title
 
 
-class Администрация(models.Model):
+class Governance(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
                             default='')
-    photo = models.ImageField("Фото",
-                              upload_to="photo_leadership/",
-                              null='True',
-                              blank='True')
-    position = models.TextField(max_length=250)
-    name = models.TextField(max_length=250)
-    phone_number = models.TextField(max_length=250)
+    Должность = models.TextField(max_length=250)
+    ФИО = models.TextField(max_length=250)
+    Номер_телефона = models.TextField(max_length=250)
+
+    class Meta:
+        abstract = True
 
     def __str__(self):
         return self.title
+
+
+class АдминистрацияСТ(Governance):
+    pass
+
+
+class Правление(Governance):
+    pass
+
+
+class Уполномоченные(Governance):
+    pass
+
+
+class РевизионнаяКомиссия(Governance):
+    pass
+
+
+class СчетнаяКомиссия(Governance):
+    pass
 
 
 class Debtors(models.Model):

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Тарифы на электроэнергию и газ{% endblock %}
+
+{% block content %}
+
+<h4>Тарифы на электроэнергию и газ</h4>
+<div class="elect_and_gas_price">
+{% for price in elect_gas_prices %}
+
+
+<p class="font-weight-bold">Тарифы с {{price.дата_от}}</p>
+
+<p>Согласно Указу № 993 от 28.12.2019г с {{price.дата_от}}  действуют следующие тарифы:</p>
+
+    <p><slug class="font-weight-bold">Электроэнергия</slug> — {{price.электроэнергия}} руб. за 1 квт*ч (прежний тариф {{price.прежний_электроэнергия}})</p>
+    <p><slug class="font-weight-bold">Газ природный</slug> — {{price.газ}} руб. за 1 м.куб (прежний тариф {{price.прежний_газ}})</p>
+
+{% endfor %}
+</div>
+{% endblock %}

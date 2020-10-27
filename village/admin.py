@@ -18,10 +18,15 @@ class ForCommunityAdmin(admin.ModelAdmin):
     ordering = ('publish',)
 
 
-@admin.register(Администрация)
+@admin.register(Тарифы_Электр_Газ)
+class ElGAs(admin.ModelAdmin):
+    list_display = ('дата_от', )
+
+
+@admin.register(АдминистрацияСТ, Правление, Уполномоченные, РевизионнаяКомиссия, СчетнаяКомиссия)
 class LeadershipAdmin(admin.ModelAdmin):
-    list_display = ('title', 'photo', 'name',)
-    search_fields = ('title', 'name')
+    list_display = ('title', 'ФИО', 'Должность')
+    search_fields = ('title', 'ФИО', 'Должность')
     prepopulated_fields = {'slug': ('title',)}
 
 

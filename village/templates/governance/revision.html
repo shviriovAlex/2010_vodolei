@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Ревизионная комиссия{% endblock %}
+{% block content %}
+<h4>Ревизионная комиссия</h4>
+{% for leader in leaders %}
+
+<div class="media">
+
+  <div class="media-body">
+    <h5 class="mt-0"> {{ leader.Должность }}</h5>
+    <h5 class="card-text">{{ leader.ФИО }}</h5>
+    <h5  class="card-text">Тел.(мобильный): {{ leader.Номер_телефона }}</h5>
+    </div>
+</div>
+
+<hr class="my-4">
+{% endfor %}
+{% endblock %}

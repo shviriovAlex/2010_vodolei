@@ -2,60 +2,41 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Vodolei</title>
+ <title>{% block title %}{% endblock %}</title>
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 
-    <link href="{% static '/village.css' %}" rel="stylesheet">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src='{% static "script.js" %}'></script>
-<script>
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="{% static 'village.css' %}" rel="stylesheet">
+<script type="text/javascript" src='{% static "script.js" %}'></script>
 
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-</script>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top bd-navbar" style="background-color: #6b7478;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bd-navbar">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
       <a class="navbar-brand text-light" href="{% url 'village:for_community' %}">
-
       Водолей 2010
   </a>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
 
-    <div class="main-navbar" style="display: flex; align-items:flex-end;">
-<div class="registrations" style="display: flex; justify-content: flex-end;">
     {% if request.user.is_authenticated %}
 
-    <ul class="navbar-nav mr-auto">
-        <div class="dropdown show-info">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {{ request.user.username }}
-  </button>
+  </a>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <a class="dropdown-item" href="{% url 'village:logout' %}">
@@ -65,111 +46,121 @@ function topFunction() {
         Изменить пароль
     </a>
 
-          <a class="dropdown-item" href="{% url 'village:password_reset' %}">
-        Сбросить пароль
-    </a>
         {% if request.user.is_superuser %}
 
           <a class="dropdown-item text-info" href="{% url 'admin:index' %}">
         Для администратора
     </a>
+
         {% endif %}
     </div>
-  </div>
-<a href="{% url 'village:for_community' %}"><input class="btn btn-secondary" value="Главная" type="submit" aria-haspopup="true" aria-expanded="false"></a>
+  </li>
 
+      <li class="nav-item active">
+        <a class="nav-link text-light" href="{% url 'village:for_community' %}">Главная</a>
+      </li>
 
-        <div class="dropdown show-info">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle  text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Юридическая информация
   </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
          <a class="dropdown-item" href="{% url 'village:rule' %}">Устав СТ "Водолей 2010"</a>
     <a class="dropdown-item" href="{% url 'village:rule_inside' %}">Правила внутреннего распорядка СТ "Водолей 2010"</a>
-    <a class="dropdown-item" href="{% url 'village:codex_about_land' %}">Кодекс о земле</a>
-    <a class="dropdown-item" href="#">Указ Президента РБ</a>
-    <a class="dropdown-item" href="#">Кодекс РБ о земле</a>
+    <a class="dropdown-item" href="{% url 'village:codex_about_land' %}">Кодекс РБ о земле</a>
+    <a class="dropdown-item" href="{% url 'village:order_of_the_president' %}">Указ Президента РБ</a>
       <a class="dropdown-item" href="#">Требования к постройкам и зеленым <br> насаждениям на садовом (дачном) участке</a>
   </div>
-</div>
-                <div class="dropdown show-info">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </li>
+
+        <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Пожарная безопасность
   </a>
-
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <a class="dropdown-item" href="#">Пожарная безопасность</a>
       <a class="dropdown-item" href="#">Противопожарное состояние территории и <br>домовладений садоводческих товариществ</a>
-
-
   </div>
-  </div>
-<a href="{% url 'village:maps' %}"><input class="btn btn-secondary" value="План и расположение СТ" type="submit" aria-haspopup="true" aria-expanded="false"></a>
+        </li>
 
+    <li class="nav-item active">
+        <a class="nav-link text-light" href="{% url 'village:maps' %}">Расположение СТ<span class="sr-only">(current)</span></a>
+      </li>
 
-  </div>
+      <li class="nav-item active">
+        <a class="nav-link text-danger" href="{% url 'village:hunger' %}">Hunger</a>
+      </li>
 
-</div>
-    </div>
-    </div>
 {% else %}
-    <a href="{% url 'village:photo' %}"><input class="btn btn-secondary" value="Фотоальбом" type="submit" aria-haspopup="true" aria-expanded="false"></a>
-<a href="{% url 'village:maps' %}"><input class="btn btn-secondary" value="Расположение товарищества" type="submit" aria-haspopup="true" aria-expanded="false"></a>
+
+    <li class="nav-item active">
+        <a class="nav-link text-light" href="{% url 'village:maps' %}">Расположение товарищества<span class="sr-only">(current)</span></a>
+      </li>
 
 
 {% endif %}
-
+    </ul>
+<!--      <div class="black_and_white">-->
+<!--          <span></span>-->
+<!--      </div>-->
+  </div>
 </nav>
+
+<!------------------------------end navbar-------------------------------------->
+
+<!-------------------------------start left container----------------------------------------->
 {% if request.user.is_authenticated %}
 <div class="container">
 <div class="row">
 
-   <div class="col-lg-4 bd-sidebar" style="background-color: white">
+   <div class="col-lg-4 bd-sidebar">
     <form class="bd-search d-flex align-items-center">
     <button class="btn btn-link bd-search-docs-toggle d-lg-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="true" aria-label="Toggle docs avigation">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="35"  style="color: black" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg>
   </button>
 </form>
-<nav class="collapse bd-links" style="overflow: auto; height: 40rem; position: sticky; top: 3em; " id="bd-docs-nav" aria-label="Main navigation">
 
+<nav class="collapse bd-links" id="bd-docs-nav" aria-label="Main navigation">
 
+<ul class="navbar-nav mr-auto">
 
-    <li class="list-group-item" >
-<div class="pulse">
+    <li class="list-group-item">
+    <div class="pulse">
 
-    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle text-secondary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
        Должники
     </a>
 
          <div class="dropdown-menu dropright">
-
              <a href="{% url 'village:targeted_contributions' %}" class="dropdown-item text-secondary">Целевые взносы</a>
              <a href="{% url 'village:membership_fee' %}" class="dropdown-item text-secondary">Членские взносы</a>
              <a href="{% url 'village:electricity' %}" class="dropdown-item text-secondary">Электроэнергия</a>
          </div>
+
     </div>
+
     </li>
+
         <li class="list-group-item">
-    <a class="nav-link text-secondary bg-light" href="{% url 'village:shames' %}">Доска позора</a>
+    <a class="nav-link text-secondary" href="{% url 'village:shames' %}">Доска позора</a>
       </li>
     <li class="list-group-item" >
-    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle text-secondary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         Платежи
     </a>
          <div class="dropdown-menu">
 
-             <a href="" class="dropdown-item text-secondary">Целевые</a>
-             <a href="" class="dropdown-item text-secondary">Членские</a>
-             <a href="" class="dropdown-item text-secondary">Электроэнергия</a>
-             <a href="" class="dropdown-item text-secondary">Как оплатить</a>
+             <a href="{% url 'village:target' %}" class="dropdown-item text-secondary">Целевые</a>
+             <a href="{% url 'village:members' %}" class="dropdown-item text-secondary">Членские</a>
+             <a href="{% url 'village:how_to_pay' %}" class="dropdown-item text-secondary">Как оплатить</a>
          </div>
     </li>
         <li class="list-group-item">
-    <a class="nav-link text-secondary bg-light" href="#">Тарифы на электро энергию</a>
+    <a class="nav-link text-secondary" href="{% url 'village:elect_and_gas_price' %}">Тарифы на электро энергию и газ</a>
       </li>
         <li class="list-group-item" >
-    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle text-secondary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         Оформление и регистрация
     </a>
          <div class="dropdown-menu">
@@ -182,19 +173,20 @@ function topFunction() {
          </div>
     </li>
             <li class="list-group-item" >
-    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+    <a class="nav-link dropdown-toggle text-secondary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
         Как подключить
     </a>
          <div class="dropdown-menu">
 
-             <a href="" class="dropdown-item text-secondary">Водоснабжение</a>
-             <a href="" class="dropdown-item text-secondary">Газ</a>
-             <a href="" class="dropdown-item text-secondary">Электричество</a>
+             <a href="{% url 'village:water_connect' %}" class="dropdown-item text-secondary">Водоснабжение</a>
+             <a href="{% url 'village:gas_connect' %}" class="dropdown-item text-secondary">Газ</a>
+             <a href="{% url 'village:electricity_connect' %}" class="dropdown-item text-secondary">Электричество</a>
 
          </div>
     </li>
+
                 <li class="list-group-item" >
-    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle text-secondary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         Проекты сетей
     </a>
          <div class="dropdown-menu">
@@ -202,56 +194,47 @@ function topFunction() {
              <a href="" class="dropdown-item text-secondary">Водоснабжение</a>
              <a href="" class="dropdown-item text-secondary">Газ</a>
              <a href="" class="dropdown-item text-secondary">Электричество</a>
-             <a href="" class="dropdown-item text-secondary">Электричество</a>
          </div>
     </li>
 
-
-
-
                 <li class="list-group-item" >
-    <a class="nav-link dropdown-toggle text-secondary bg-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle text-secondary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         Органы управления
     </a>
          <div class="dropdown-menu">
-             <a href="{% url 'village:leadership' %}" class="dropdown-item text-secondary">Администрация СТ</a>
-             <a href="" class="dropdown-item text-secondary">Правление</a>
-             <a href="" class="dropdown-item text-secondary">Уполномоченные</a>
-             <a href="" class="dropdown-item text-secondary">Ревизионная комиссия</a>
-             <a href="" class="dropdown-item text-secondary">Счетная комиссия</a>
+             <a href="{% url 'village:administration' %}" class="dropdown-item text-secondary">Администрация СТ</a>
+             <a href="{% url 'village:government' %}" class="dropdown-item text-secondary">Правление</a>
+             <a href="{% url 'village:in_commission' %}" class="dropdown-item text-secondary">Уполномоченные</a>
+             <a href="{% url 'village:revision' %}" class="dropdown-item text-secondary">Ревизионная комиссия</a>
+             <a href="{% url 'village:counting_commission' %}" class="dropdown-item text-secondary">Счетная комиссия</a>
          </div>
     </li>
+
             <li class="list-group-item">
-        <a class="nav-link text-secondary bg-light" style="background: #fff1dd" href="{% url 'village:protocols' %}">Протоколы собраний</a>
+        <a class="nav-link text-secondary" href="{% url 'village:protocols' %}">Протоколы собраний</a>
     </li>
 
             <li class="list-group-item">
-    <a class="nav-link text-secondary bg-light" href="{% url 'village:photo' %}">Фотоальбом</a>
+    <a class="nav-link text-secondary" href="{% url 'village:photo' %}">Фотоальбом</a>
       </li>
+
             <li class="list-group-item">
-    <a class="nav-link text-secondary bg-light" href="#">Полезная информация</a>
+    <a class="nav-link text-secondary" href="#">Полезная информация</a>
       </li>
 
-
-
-
-
-
-    <li class="list-group-item">
-    <a class="nav-link text-secondary bg-light" href="{% url 'village:maps' %}">Расположение товарищества</a>
-      </li>
      <li class="list-group-item">
-    <a class="nav-link text-secondary bg-light" href="{% url 'village:photo' %}">Фотоальбом</a>
-      </li>
-      <li class="list-group-item">
-    <a class="nav-link text-secondary bg-light" href="">История</a>
+    <a class="nav-link text-secondary" href="{% url 'village:photo' %}">Фотоальбом</a>
       </li>
 
-</div>
+      <li class="list-group-item">
+    <a class="nav-link text-secondary" href="">История</a>
+      </li>
+</ul>
+
 
 
 </nav>
-
+</div>
 
 <div class="col-lg-8">
     {% endif %}
@@ -267,9 +250,26 @@ function topFunction() {
   <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
   <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
 </svg></button>
-<div class="jumbotron">
-  <a href="mailto:stvodoley2010@gmail.com"><img src="static/jumbotron/Gmail_Icon.png/" width="30 px" height="30 px"> stvodoley2010@gmail.com</a>
+<div class="contacts">
+  <a href="mailto:stvodoley2010@gmail.com" class="text-info"><img src="static/jumbotron/Gmail_Icon.png/" width="30 px" height="30 px"> stvodoley2010@gmail.com</a>
   <hr class="my-4">
+</div>
+<script>
+    window.onscroll = function() {scrollFunction()};
 
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
 </body>
 </html>

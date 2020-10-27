@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
+{% block title %}Доска позора{% endblock %}
+
 {% block content %}
 
 
 <div class="shames">
   {% for shame in shames %}
+
 
 <div class="card">
 
@@ -18,9 +21,9 @@
 
 
 
-  <a href="{{shame.get_absolute_url}}" class="btn btn-light">Читать полность</a>
+  <a href="{{shame.get_absolute_url}}" class="btn btn-light text-info">Читать полность</a>
     </div>
-   <img class="card-img-top" src="{{shame.photo1.url}}" alt="Card image cap" style="padding: 10px">
+   <img class="card-img-top" src="{{shame.photo1.url}}" alt="Card image cap">
 </div>
 
 {% endfor %}

@@ -1,25 +1,24 @@
 {% extends "base.html" %}
-
+{% block title %} Главная {% endblock %}
 {% block content %}
 
 
 
  {% if request.user.is_authenticated %}
-<h4 class=" " style="text-align: center">Новости</h4>
+<h4>Новости</h4>
+<p class="text-warning">{{hello}}</p>
 
         {% for main in main_page %}
+
 <div class="card">
 
-
-
-
   <div class="card-body">
-      <p class="text-secondary">Упобликованно {{main.publish}}</p>
-    <h6 class="card-title" style="color: #6b7478">{{ main.title }}</h6>
+      <p class="text-secondary">Опубликовано {{main.publish}}</p>
+    <h6 class="card-title">{{ main.title }}</h6>
     <p class="card-text">{{ main.body|linebreaks|truncatewords_html:40 }}</p>
-      <a href="{{main.get_absolute_url}}" class="btn btn-light">Читать полность</a>
+      <a href="{{main.get_absolute_url}}" class="btn btn-light text-info">Читать полность</a>
       {% if main.image %}
-<img class="card-img-top" src="{{main.image.url}}" alt="Card image cap" style="padding: 10px">
+<img class="card-img-top" src="{{main.image.url}}" alt="Card image cap">
       {% endif %}
   </div>
 </div>
@@ -32,7 +31,7 @@
 
         {% block main %}
 <div class="login">
-      <div class="card" style="width: 100%">
+      <div class="card">
         <div class="card-body">
 
         <form method="post">
@@ -41,17 +40,14 @@
 
         {{ form|crispy }}
 
-        <button type="submit" class="btn btn btn-block">Войти</button>
+        <button type="submit" class="btn btn-secondary">Войти</button>
         </form>
         </div>
         </div>
+    <p class="text-danger">{{error}}</p>
 
-    <p>Наш сайт содержит конфеденциальную информацию о деятельности нашего товарищества
-        (форум, протоколы, уставы, планы). Для предотвращения к этой информации несанкционированного доступа лицам,
-        не являющихся членами товарищества, предусмотрена персональная идентификация только для членов товарищества.
-    По вопросам регистрации обращайтесь по телефону:  +375 29 3535664 (Басаранович Алексей Григорьевич)</p>
-        {% endblock %}
 </div>
+{% endblock %}
 {% endif %}
 
 

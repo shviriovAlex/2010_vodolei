@@ -1,29 +1,344 @@
 body{
-
-    background: #f0eeee;
+    font-family: 'Rubik', sans-serif;
+    background-color: #f0eeee;
     margin-top: 50px;
     padding: 10px 100px;
    }
-p, h1, h4, h5, a{
-    font-family: Roboto, serif;
+
+p, h6{
+    text-indent: 20px;
 }
-.card-img-top{
-      padding: 10px;
-  }
+
+a{
+  text-decoration: none;
+}
+
+h1, h4{
+  text-align: center;
+  padding: 15px;
+  color: gray;
+}
+
+.my-4{
+    background-color: #6b7478;
+}
+
+
+.text-info{
+    position: relative;
+    text-decoration: none !important;
+}
+
+.text-info:after{
+    content:'';
+    display: block;
+    background-color: #6b7478;
+    border-radius: 50%;
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    transition-duration: 1.5s;
+    opacity: 0;
+}
+
+.text-info:hover:after{
+    width: 100%;
+    opacity: 0.7;
+}
+
+/*----------base.html---------------*/
+
+.contacts{
+    width: 100%;
+    padding: 50px 0;
+
+}
+
+/*----------top nav------------*/
+.navbar{
+    background-color: #6b7478;
+}
+
+.black_and_white{
+    width: 40px;
+    height: 20px;
+    background-color: white;
+    border-radius: 20px;
+    position: relative;
+}
+
+.black_and_white span{
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition-duration: 1s;
+}
+
+.black_and_white.activeBlackAndWhite span{
+    position: absolute;
+    left: 20px;
+    top: 0;
+}
+
+body.activeBlackAndWhite{
+    background-color: black;
+}
+
+a.activeBlackAndWhite{
+    color: white;
+}
+
+p.activeBlackAndWhite{
+    color: white;
+}
+
+.card-body.activeBlackAndWhite{
+    background-color: black;
+}
+
+.rule_inside_head{
+    text-align: right;
+}
+
+
+/*-------------left nav col-4-------------*/
+
+
+.bd-links{
+    overflow: auto;
+    height: 650px;
+    position: sticky;
+    top: 3em;
+    border-left: none;
+}
+
+.bd-links .list-group-item{
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    position:relative;
+}
+
+.bd-links .list-group-item:before, .bd-links .list-group-item:after{
+    content:'';
+    display: block;
+    background-color: #A9A9A9;
+    width: 2px;
+    height:0;
+    position: absolute;
+    transition-duration: 1s;
+}
+
+.bd-links .list-group-item:before{
+    left: 0;
+    bottom:0;
+}
+
+.bd-links .list-group-item:after{
+    right: 0;
+    top:0;
+}
+
+.bd-links .nav-link{
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+}
+.bd-links .list-group-item:hover:before{
+    height: 100%;
+}
+
+.bd-links .list-group-item:hover:after{
+    height: 100%;
+}
+
+.bd-links .list-group-item:hover{
+    background-color: #E8ECEC;
+    transition-duration: 1s;
+}
+/*-------------------------------------------*/
+
+/*-----------------for community and log-----------------------*/
+
 .login{
+    min-height: 500px;
     background: #fcfbfc;
     padding: 50px 400px;
     width: 100%;
 }
+
+.login button{
+    width: 100%;
+}
+
+.login .text-danger{
+    text-align: center;
+}
+
+.card-title{
+    color: #6b7478;
+    font-weight: 900;
+
+}
+
+.content-for_community{
+    margin: 20px 0;
+}
+
+.documents_news{
+    display: flex;
+}
+
+.documents_news a{
+    margin: 15px 5px;
+}
+
+.card-img-top{
+    padding: 20px;
+    width: 100%;
+  }
+
 .minimized{
     width: 33%;
   }
 
 .card{
-
-  background: #fcfbfc;
-  margin: 2px;
+    background-color: #fcfbfc;
+    margin: 2px;
 }
+
+.card-body .text-info{
+
+}
+
+/*---------payments----------*/
+.responsibility{
+    line-height: 25px;
+    padding: 10px;
+}
+
+
+/*----------elect_and_gas_price----------*/
+
+.elect_and_gas_price{
+    font-size: 20px;
+}
+
+/*------------shames------------*/
+
+
+.shames{
+  display: flex;
+  flex-wrap:wrap;
+  margin: 10px;
+}
+
+
+.shame{
+    display: flex;
+    flex-wrap:wrap;
+    padding: 1px;
+
+}
+
+/*--------photo------------*/
+
+.carousel-item{
+    height: 500px;
+}
+.carousel-item img{
+    width: 100%;
+}
+
+/*---------how_to_connect----------*/
+
+.documents_connect{
+    display: flex;
+}
+.documents_connect a{
+    width: 100%;
+
+}
+
+.connect_media{
+    width: 98%;
+    border: 2px solid gray;
+    border-radius: 5px;
+    background: #fcfbfc;
+    opacity: 1;
+    padding: 5px;
+    transition-duration: 1s;
+    margin: 15px 0;
+    display: flex;
+}
+
+.connect_media:hover{
+    opacity: 0.8;
+    border: 3px solid #6b7478;
+    border-radius: 10px;
+}
+
+.warning{
+    text-align: center;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+
+th{
+  color: gray;
+}
+
+a.text-dark{
+    text-decoration: none;
+    opacity: 1;
+}
+
+.a.text-dark:hover {
+  opacity: 0.6;
+}
+
+h5{
+  text-align: center;
+}
+
+
+
+
+svg{
+    margin: 2px;
+}
+/*---------------protocols------------------*/
+
+.protocols{
+    line-height: 0;
+}
+
+.media {
+    border: 2px solid gray;
+    border-radius: 5px;
+    background: #fcfbfc;
+    opacity: 1;
+    padding: 5px;
+    transition-duration: 1s;
+    margin: 15px 0;
+ }
+
+
+.media:hover {
+    opacity: 0.6;
+    border-radius: 10px;
+    border: 3px solid #6b7478;
+}
+
+
 @media(max-width: 1224px){
     .login{
         padding: 50px 250px;
@@ -35,6 +350,9 @@ p, h1, h4, h5, a{
           display: block !important;
 
   }
+    .shames .card{
+        width: 48%;
+    }
 
 }
 
@@ -61,6 +379,9 @@ p, h1, h4, h5, a{
   .card{
     width: 100%;
   }
+  .shames .card{
+      width: 100%;
+  }
 }
 
 @media(max-width: 768px){
@@ -74,12 +395,16 @@ p, h1, h4, h5, a{
     .login{
       padding: 50px 10px;
   }
+    .documents_connect{
+        display: block;
+    }
 }
 
 @media(max-width: 480px){
 
     body{
         padding: 10px 0;
+        background: #fcfbfc;
     }
     .login{
         padding: 50px 0;
@@ -90,79 +415,29 @@ p, h1, h4, h5, a{
     .card-body{
         width: 100%;
     }
+    .card{
+        margin: 0;
+    }
 }
 
-
-.jumbotron{
-    background:#f0eeee;
-
-}
-
-h4{
-  text-align: center;
-  padding: 10px;
-  color: gray;
-}
-th{
-  color: gray;
-}
-
-a.text-dark{
-  text-decoration: none;
-  opacity: 1;
-  padding: 5px;
-}
-
-.a.text-dark:hover {
-  opacity: 0.6;
-}
-
-h5{
-  text-align: center;
-}
-
-.shames{
-  display: flex;
-  flex-wrap:wrap;
-  padding: 10px;
-}
-
-.shame{
-  display: flex;
-  flex-wrap:wrap;
-  padding: 1px;
-}
-
-
-
-
-[class=col-lg-4]{
+.col-lg-4{
 
   background-color: white;
 }
 
-[class=col-lg-8]{
- background: white;
+.col-lg-8{
+    background: white;
+    width: 100%;
 }
 
 .container{
     max-width: 100%;
 }
 
-.media {
-  border: 2px solid gray;
-  background: #fcfbfc;
-  opacity: 1;
-  padding: 5px;
- }
 
-.media:hover {
-  opacity: 0.6;
-}
 
 .pulse {
 
-  background-color: red;
   animation: radial-pulse 4s infinite;
 }
 
@@ -176,7 +451,7 @@ h5{
   }
 }
 
-[class=image__wrapper]{
+.image__wrapper{
 	display: flex;
 	flex-direction:column;
 	flex-wrap:wrap
@@ -191,10 +466,9 @@ h5{
   border: 1px solid gray;
 }
 
-/* увеличенная картинка */
+/*-------------- enlarged picture ---------------------*/
 #magnify {
   display: none;
-  /* position: absolute; upd: 24.10.2016 */
   position: fixed;
   max-width: 700px;
   height: auto;
@@ -251,23 +525,24 @@ h5{
 }
 
 #myBtn {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 20px; /* Place the button at the bottom of the page */
-    right: 30px; /* Place the button 30px from the right */
-    z-index: 99; /* Make sure it does not overlap */
-    border: none; /* Remove borders */
-    outline: none; /* Remove outline */
-    background: whitesmoke; /* Set a background color */
-    color: gray; /* Text color */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 15px; /* Some padding */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 18px; /* Increase font size */
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background: whitesmoke;
+    color: gray;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
     animation: radial-pulse 4s infinite;
     opacity: 0.7;
 }
 
 #myBtn:hover {
-    background-color: #A9A9A9; /* Add a dark-grey background on hover */
+    background-color: #A9A9A9;
 }
+
